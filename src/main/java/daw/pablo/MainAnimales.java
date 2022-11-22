@@ -51,7 +51,7 @@ public class MainAnimales {
         //Prueba de tiempo
         
         p1.jugar(a1, 200);
-        
+       
         System.out.println(a1.getPeso());
         
     }

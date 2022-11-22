@@ -16,7 +16,7 @@ public class Animal {
 
     //Atributos
     private LocalDate fechaHoy = LocalDate.now();
-    
+
     private String nombre;
     private String tipoAnimal;// "gato", "perro", "lagarto", "cobaya", "periquito"
     private double peso;
@@ -131,7 +131,7 @@ public class Animal {
 
     }
 
-    public int jugar(Animal animal, int cantidadMinutos) {
+    public int jugar(Animal pet, int cantidadMinutos) {
         /* este método le indica a la mascota que está jugando 
         y recibe como parámetro la cantidad de minutos que estará
         el animal jugando. Por cada 30 minutos completos de juego,
@@ -140,20 +140,21 @@ public class Animal {
         de minutos es negativa se considera positiva. Un animal no puede 
         jugar más de 180 minutos, por lo tanto si se supera esa cantidad se
         lanzará una excepción de tipo IllegalArgument.*/
-        if (cantidadMinutos > Math.abs(30)) {
-            animal.setPeso(animal.getPeso() - 20);
-
-        }
-        if (cantidadMinutos < Math.abs(30)) {
-            animal.setPeso(animal.getPeso() - 10);
-        }
+        //Sacar la division entre 30 y la cantida de minutos para obtener el absoluto, cuantas veces se repita ese 30.
+        //variable local double para quedarme la parte decimal y otra entera para los enteros
         try {
+            if (cantidadMinutos >= Math.abs(30)) {
+                pet.setPeso(pet.getPeso() - 20);
+
+            } else if (cantidadMinutos < Math.abs(30)) {
+                pet.setPeso(pet.getPeso() - 10);
+            }
 
         } catch (IllegalArgumentException npe) {
             if (cantidadMinutos > Math.abs(180)) {
 
             }
-            System.out.println("El animal no puede jugar mas de 180 minutos");
+            System.out.println("QUE TE LO CARGAS!!");
         }
 
         return cantidadMinutos;
@@ -173,18 +174,16 @@ public class Animal {
     }
 
     public Animal(Animal origen) {
-        this.nombre =origen.nombre;
+        this.nombre = origen.nombre;
         this.tipoAnimal = origen.tipoAnimal;
         this.peso = origen.peso;
         this.estado = origen.estado;
-        this.fechaNacimiento=origen.fechaNacimiento;
+        this.fechaNacimiento = origen.fechaNacimiento;
     }
 
-    
-    public static  Animal copiar(Animal origen){
-        Animal aux= new Animal(origen.nombre, origen.tipoAnimal, origen.peso, origen.estado, origen.fechaNacimiento);
-        
-        
+    public static Animal copiar(Animal origen) {
+        Animal aux = new Animal(origen.nombre, origen.tipoAnimal, origen.peso, origen.estado, origen.fechaNacimiento);
+
         return aux;
     }
 }

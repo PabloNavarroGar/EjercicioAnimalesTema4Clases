@@ -43,29 +43,32 @@ public class Persona {
         return "Persona{" + "nombre=" + nombre + ", edad=" + edad + '}';
     }
 
-    
-    public  void llamar(Animal pet) {
+    public void llamar(Animal pet) {
 
-        pet.setEstado(pet.getNombre()+" ,despierta!!!");
+        pet.setEstado(pet.getNombre() + " ,despierta!!!");
 
     }
+
     //QUITAR LOS STATIC PARA PODER USARLOS EN EL MAIN
     public void alimentar(Animal pet, double cantidadGramos) {
 
         Animal.comer(pet, cantidadGramos);
     }
 
-    public  void jugar(Animal pet, int cantidadMinutos) {
+    public void jugar(Animal pet, int cantidadMinutos) {
         try {
-            if (cantidadMinutos < 30 || cantidadMinutos > 30) {
 
+            if (cantidadMinutos <= 180) {
+                System.out.println("Dentro de If");
                 pet.setEstado("jugando con el humano");
+
+            } else {
+                throw new IllegalArgumentException();//expecion
             }
         } catch (IllegalArgumentException ime) {
-            if (cantidadMinutos > 180) {
-                System.out.println("Error, tiempo no permitido, tienes que jugar 180 minutos como maximo");
-            }
-
+            
+            System.out.println("El tiempo maximo es 180 como permitido, por lo cual se pondra a 180");
+            cantidadMinutos=180;
         }
     }
 
